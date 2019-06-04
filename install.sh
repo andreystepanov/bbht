@@ -6,6 +6,7 @@ sudo apt-get upgrade
 sudo apt-get install -y git
 sudo apt-get install rename
 sudo apt-get install -y python3-pip
+sudo apt-get install -y ruby-bundler
 # sudo snap install -y --classic go
 
 mkdir ~/go
@@ -19,9 +20,6 @@ sudo apt-get install -y jq
 sudo apt-get install -y ruby-full
 sudo apt-get install -y libcurl4-openssl-dev libxml2 libxml2-dev libxslt1-dev ruby-dev build-essential libgmp-dev zlib1g-dev
 
-# Don't forget to set up AWS credentials!
-echo "Don't forget to set up AWS credentials!"
-apt install -y awscli
 
 sudo apt-get install -y build-essential libssl-dev libffi-dev python-dev
 sudo apt-get install -y python-setuptools
@@ -53,7 +51,7 @@ echo "done"
 echo "installing subfinder"
 git clone https://github.com/subfinder/subfinder
 cd subfinder
-go build
+go get && go build
 mv ./subfinder ${tools_path}
 cd ${sources_path}
 echo "done"
@@ -62,7 +60,7 @@ echo "done"
 # Subdomain brute forcing
 #------------------------*/
 echo "installing gobuster"
-got clone https://github.com/OJ/gobuster gobuster
+got clone https://github.com/OJ/gobuster
 cd gobuster
 go get && go build
 mv ./gobuster ${tools_path}
@@ -73,8 +71,8 @@ echo "installing massdns"
 git clone https://github.com/blechschmidt/massdns
 cd massdns
 make
-mv bin/massdns ${tools_path}
-mv scripts/ ${tools_path}massdns-scripts
+mv ./bin/massdns ${tools_path}
+mv ./scripts/ ${tools_path}massdns-scripts
 cd ${sources_path}
 echo "done"
 
@@ -83,9 +81,9 @@ echo "done"
 #------------------------*/
 echo "installing masscan"
 git clone https://github.com/robertdavidgraham/masscan
-cd massdns
+cd masscan
 make -j
-mv bin/masscan ${tools_path}
+mv ./bin/masscan ${tools_path}
 cd ${sources_path}
 echo "done"
 
@@ -126,6 +124,30 @@ echo "done"
 # cd ${sources_path}
 
 #------------------------*/
+# Other useful tools
+#------------------------*/
+# Don't forget to set up AWS credentials!
+echo "installing aws cli"
+echo "Don't forget to set up AWS credentials!"
+apt install -y awscli
+echo "done"
+
+echo "installing sqlmap"
+sudo apt-get -y sqlmap
+echo "done"
+
+echo "installing wpscan"
+gem install wpscan
+echo "done"
+
+echo "install link finder"
+git clone https://github.com/GerbenJavado/LinkFinder
+cd LinkFinder
+python setup.py install
+mv ./linkfinder.py ${tools_path}
+echo "done"
+
+#------------------------*/
 # Word lists
 #------------------------*/
 echo "downloading lists"
@@ -144,6 +166,10 @@ echo "downloading all.txt"
 curl -O https://gist.githubusercontent.com/jhaddix/86a06c5dc309d08580a018c66354a056/raw/96f4e51d96b2203f19f6381c8c545b278eaa0837/all.txt
 echo "done"
 
+
+#------------------------*/
+# Cleaning up our mess
+#------------------------*/
 echo "cleaning up"
 rm -rf ${sources_path}
 echo "done"
