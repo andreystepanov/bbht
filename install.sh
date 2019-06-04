@@ -35,10 +35,10 @@ aws_path=${HOME}/.aws/
 mkdir ${sources_path}
 cd ${sources_path}
 
-# create a lists folder in ~/
-mkdir ${lists_path}
-
 # create a tools folder in ~/
+mkdir ${tools_path}
+
+# create a lists folder in ~/
 mkdir ${lists_path}
 # cd ${sources_path}
 
