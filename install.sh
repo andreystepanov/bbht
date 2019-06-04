@@ -118,11 +118,12 @@ mv ./aquatone ${tools_path}
 cd ${sources_path}
 echo "done"
 
-echo "installing eyewitness"
-git clone https://github.com/FortyNorthSecurity/EyeWitness
-cd EyeWitness
-./setup/setup.sh
-mv ${sources_path}EyeWitness ${tools_path}
+# echo "installing eyewitness"
+# git clone https://github.com/FortyNorthSecurity/EyeWitness
+# mv EyeWitness ${tools_path}
+# cd ${tools_path}EyeWitness
+# ./setup/setup.sh
+# cd ${sources_path}
 
 #------------------------*/
 # Word lists
