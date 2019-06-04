@@ -133,7 +133,7 @@ apt install -y awscli
 echo "done"
 
 echo "installing sqlmap"
-sudo apt-get -y sqlmap
+sudo apt-get install -y sqlmap
 echo "done"
 
 echo "installing wpscan"
